@@ -10,7 +10,7 @@ int main(){
     std::vector<int> vec{1, 2, 3, 4};
     size_t index{0};
     std::vector<std::vector<int>> result{};
-    IMD::PERMUTATIONS::Heap_iterative_algorithm(vec, result, vec.size());
+    IMD::PERMUTATIONS::Johnson_Trotter_algorithm(vec, result);
 
     for(auto x : result){
         std::cout << "INDEX: " << index << ": ";
@@ -19,9 +19,6 @@ int main(){
         std::cout << std::endl;
         ++index;
     }
-
-
-    std::cout << "The end!";
 
     return 0;
 }

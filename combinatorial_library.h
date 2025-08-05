@@ -73,7 +73,43 @@ namespace IMD{
                 }
             }
         }
+
+        template<typename T>
+        void Johnson_Trotter_algorithm(std::vector<T>& permutation, std::vector<std::vector<T>>& result){
+            std::vector<short> directions(permutation.size(), -1); // -1 ~ left, +1 ~ right
+            result.push_back(permutation);
+
+            while(true){
+                int largest_mobile_index = -1;
+
+                for (size_t i {0}; i < permutation.size(); ++i) {
+                    int new_index = i + directions[i];
+                    if (new_index >= 0 && new_index < permutation.size() && permutation[i] > permutation[new_index]) {
+                        if (largest_mobile_index == -1 || permutation[i] > permutation[largest_mobile_index])
+                            largest_mobile_index = i;
+                    }
+                }
+
+
+                if (largest_mobile_index == -1) break;
+
+                int move_index {largest_mobile_index + directions[largest_mobile_index]};
+                std::swap(permutation[largest_mobile_index], permutation[move_index]);
+                std::swap(directions[largest_mobile_index], directions[move_index]);
+
+                // Обновляем индекс перемещенного элемента
+                largest_mobile_index = move_index;
+
+                // После обмена меняем направление у всех элементов больше перемещенного
+                for (size_t i = 0; i < directions.size(); ++i) {
+                    if (permutation[i] > permutation[largest_mobile_index]) {
+                        directions[i] *= -1;
+                    }
+                }
+
+
+                result.push_back(permutation);
+            }
+        }
     }
-
-
 }
