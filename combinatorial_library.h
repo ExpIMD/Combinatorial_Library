@@ -30,8 +30,8 @@ namespace IMD{
             std::reverse(permutation.begin() + j, permutation.end());
             return true;
         }
-        template<typename T>
-        void Heap_recursion_algorithm(std::vector<T>& permutation, std::vector<std::vector<T>>& result, size_t n){
+        template<typename T, typename Func>
+        void Heap_recursion_algorithm(std::vector<T>& permutation, Func f, size_t n){
             if (n > permutation.size())
                 throw std::runtime_error("n > permutation.size()");
 
@@ -48,36 +48,34 @@ namespace IMD{
             }
         }
 
-        template<typename T>
-        void Heap_iterative_algorithm(std::vector<T>& permutation, std::vector<std::vector<T>>& result, size_t n){
+        template<typename T, typename Func>
+        void Heap_iterative_algorithm(std::vector<T>& permutation, Func f, size_t n){
             if (n > permutation.size())
                 throw std::runtime_error("n > permutation.size()");
 
             std::vector<size_t> c(n, 0);
-            result.push_back(permutation);
+            f(permutation);
 
             size_t i {0};
             while (i < n) {
                 if (c[i] < i) {
-                    if (i % 2 == 0) {
+                    if (i % 2 == 0)
                         std::swap(permutation[0], permutation[i]);
-                    } else {
-                        std::swap(permutation[c[i]], permutation[i]);
-                    }
-                    result.push_back(permutation);
-                    c[i]++;
-                    i = 0;
+                    else std::swap(permutation[c[i]], permutation[i]);
+                    f(permutation);
+                    ++c[i];
+                    i = {0};
                 } else {
-                    c[i] = 0;
-                    i++;
+                    c[i] = {0};
+                    ++i;
                 }
             }
         }
 
-        template<typename T>
-        void Johnson_Trotter_algorithm(std::vector<T>& permutation, std::vector<std::vector<T>>& result){
+        template<typename T, typename Func>
+        void Johnson_Trotter_algorithm(std::vector<T>& permutation, Func f){
             std::vector<short> directions(permutation.size(), -1); // -1 ~ left, +1 ~ right
-            result.push_back(permutation);
+            f(permutation);
 
             while(true){
                 int largest_mobile_index = -1;
@@ -97,18 +95,14 @@ namespace IMD{
                 std::swap(permutation[largest_mobile_index], permutation[move_index]);
                 std::swap(directions[largest_mobile_index], directions[move_index]);
 
-                // Обновляем индекс перемещенного элемента
-                largest_mobile_index = move_index;
+                largest_mobile_index ={move_index};
 
-                // После обмена меняем направление у всех элементов больше перемещенного
-                for (size_t i = 0; i < directions.size(); ++i) {
-                    if (permutation[i] > permutation[largest_mobile_index]) {
+                for (size_t i {0}; i < directions.size(); ++i)
+                    if (permutation[i] > permutation[largest_mobile_index])
                         directions[i] *= -1;
-                    }
-                }
 
 
-                result.push_back(permutation);
+                f(permutation);
             }
         }
     }

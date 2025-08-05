@@ -10,7 +10,9 @@ int main(){
     std::vector<int> vec{1, 2, 3, 4};
     size_t index{0};
     std::vector<std::vector<int>> result{};
-    IMD::PERMUTATIONS::Johnson_Trotter_algorithm(vec, result);
+    IMD::PERMUTATIONS::Johnson_Trotter_algorithm(vec, [&result](const std::vector<int>& vec){
+        result.push_back(vec);
+    });
 
     for(auto x : result){
         std::cout << "INDEX: " << index << ": ";
