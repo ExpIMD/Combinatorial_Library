@@ -1,27 +1,79 @@
 #include <algorithm>
 #include <iterator>
+#include <stdexcept>
 
-template<typename Iterator>
-bool narayana_algorithm(Iterator begin, Iterator end) {
-    auto j = std::prev(end);
+namespace IMD{
 
-    while(j != begin){
-        if (*std::prev(j) < *j) break;
-        --j;
+    namespace PERMUTATIONS{
+
+        template<typename T>
+        bool Narayana_algorithm(std::vector<T>& permutation) {
+            size_t j{permutation.size() - 1};
+        
+            while(j > 0){
+                if (permutation[j-1] < permutation[j]) break;
+                --j;
+            }
+        
+            if (j == 0)
+                return false;
+        
+            size_t l {permutation.size() - 1};
+        
+            while(l > 0){
+                if (permutation[j - 1] < permutation[l]) break;
+                --l;
+            }
+        
+            std::swap(permutation[l], permutation[j-1]);
+        
+            std::reverse(permutation.begin() + j, permutation.end());
+            return true;
+        }
+        template<typename T>
+        void Heap_recursion_algorithm(std::vector<T>& permutation, std::vector<std::vector<T>>& result, size_t n){
+            if (n > permutation.size())
+                throw std::runtime_error("n > permutation.size()");
+
+            if (n == 1){
+                result.push_back(permutation);
+                return;
+            }
+            
+            for(size_t i{0}; i < n; ++i){
+                Heap_recursion_algorithm(permutation, n - 1, result);
+                if (n % 2 == 0)
+                    std::swap(permutation[i], permutation[n-1]);
+                else std::swap(permutation[0], permutation[n-1]);
+            }
+        }
+
+        template<typename T>
+        void Heap_iterative_algorithm(std::vector<T>& permutation, std::vector<std::vector<T>>& result, size_t n){
+            if (n > permutation.size())
+                throw std::runtime_error("n > permutation.size()");
+
+            std::vector<size_t> c(n, 0);
+            result.push_back(permutation);
+
+            size_t i {0};
+            while (i < n) {
+                if (c[i] < i) {
+                    if (i % 2 == 0) {
+                        std::swap(permutation[0], permutation[i]);
+                    } else {
+                        std::swap(permutation[c[i]], permutation[i]);
+                    }
+                    result.push_back(permutation);
+                    c[i]++;
+                    i = 0;
+                } else {
+                    c[i] = 0;
+                    i++;
+                }
+            }
+        }
     }
 
-    if (j == begin)
-        return false;
 
-    auto l = std::prev(end);
-
-    while(l != begin){
-        if (*std::prev(j) < *l) break;
-        --l;
-    }
-
-    std::iter_swap(l, std::prev(j));
-
-    std::reverse(j, end);
-    return true;
 }

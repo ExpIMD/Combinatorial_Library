@@ -7,12 +7,21 @@
 int main(){
     std::cout << "Hello, world!" << std::endl;
 
-    std::list<int> vec{1, 2, 3};
-    do{
-        for(auto x : vec)
-            std::cout << x << " ";
+    std::vector<int> vec{1, 2, 3, 4};
+    size_t index{0};
+    std::vector<std::vector<int>> result{};
+    IMD::PERMUTATIONS::Heap_iterative_algorithm(vec, result, vec.size());
+
+    for(auto x : result){
+        std::cout << "INDEX: " << index << ": ";
+        for(auto y : x)
+            std::cout << y << " ";
         std::cout << std::endl;
-    }while(narayana_algorithm(vec.begin(), vec.end()));
-    
+        ++index;
+    }
+
+
+    std::cout << "The end!";
+
     return 0;
 }
