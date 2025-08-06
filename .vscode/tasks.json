@@ -9,6 +9,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${fileDirname}/program.cpp",
+                "${fileDirname}/combinatorial_library.cpp",
                 "-o",
                 "${fileDirname}/program"
             ],

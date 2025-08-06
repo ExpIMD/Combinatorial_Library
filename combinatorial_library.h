@@ -1,3 +1,6 @@
+#ifndef __COMBINATORIAL_LIBRARY_
+#define __COMBINATORIAL_LIBRARY_
+
 #include <algorithm>
 #include <iterator>
 #include <stdexcept>
@@ -109,16 +112,27 @@ namespace IMD{
     
 
     namespace BINOMIAL {
-        std::vector<std::vector<unsigned int>> Pascal_triangle(size_t rows){
-            std::vector<std::vector<unsigned int>> result;
-            for(size_t i {0}; i < rows; ++i){
-                std::vector<unsigned int> row(i + 1, 1);
-                for(size_t j {1}; j < i; ++j)
-                    row[j] = result[i - 1][j - 1] + result[i - 1][j];
-                result.push_back(row);
-            }
-            return result;
-        }
+        std::vector<std::vector<unsigned int>> Pascal_triangle(size_t rows);
+    }
+
+    namespace SEQUENCE{
+        class arithmetic_sequence{
+        private:
+            long long _current;
+            long long _step;
+        public:
+            arithmetic_sequence(long long start, long long step) : _current(start), _step(step) {}
+    
+            long long current() const noexcept;
+    
+            void next() noexcept;
+                
+            void previous() noexcept;
+    
+            bool is_convergent() const noexcept;        
+        };
     }
     
 }
+
+#endif
