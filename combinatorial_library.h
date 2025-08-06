@@ -116,6 +116,9 @@ namespace IMD{
     }
 
     namespace SEQUENCE{
+
+        const double EPSILON{1e-8};
+
         class arithmetic_sequence{
         private:
             long long _current;
@@ -130,6 +133,22 @@ namespace IMD{
             void previous() noexcept;
     
             bool is_convergent() const noexcept;        
+        };
+
+        class geometric_sequence{
+        private:
+            double _current;
+            double _ratio;
+        public:
+            geometric_sequence(double start, double ratio): _current(start), _ratio(ratio) {}
+
+            double current() const noexcept;
+        
+            void next() noexcept;
+        
+            void previous() noexcept;
+        
+            bool is_convergent() const noexcept;
         };
     }
     

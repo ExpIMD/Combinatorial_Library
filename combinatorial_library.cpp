@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <vector>
 #include <stdexcept>
+#include <cmath>
 #include "combinatorial_library.h"
 
 std::vector<std::vector<unsigned int>> IMD::BINOMIAL::Pascal_triangle(size_t rows){
@@ -28,3 +29,19 @@ void IMD::SEQUENCE::arithmetic_sequence::previous() noexcept {
 bool IMD::SEQUENCE::arithmetic_sequence::is_convergent() const noexcept {
     return false; // Arithmetic progression doesn't converge
 }            
+
+double IMD::SEQUENCE::geometric_sequence::current() const noexcept{
+    return this->_current;
+}
+
+void IMD::SEQUENCE::geometric_sequence::next() noexcept{
+    this->_current *= this->_ratio;
+}
+
+void IMD::SEQUENCE::geometric_sequence::previous() noexcept{
+    this->_current /= this->_ratio;
+}
+
+bool IMD::SEQUENCE::geometric_sequence::is_convergent() const noexcept{
+    return std::abs(this->_ratio) < 1 - EPSILON;
+}

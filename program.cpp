@@ -7,12 +7,14 @@
 int main(){
     std::cout << "Hello, world!" << std::endl;
 
-    IMD::SEQUENCE::arithmetic_sequence as{3, 5};
+    IMD::SEQUENCE::geometric_sequence gs{3, 0.3};
 
     for(size_t i {0}; i < 10; ++i){
-        std::cout << as.current() << " ";
-        as.next();
+        std::cout << gs.current() << " ";
+        gs.next();
     }
+
+    std::cout << std::endl << std::boolalpha << gs.is_convergent();
 
     return 0;
 }
