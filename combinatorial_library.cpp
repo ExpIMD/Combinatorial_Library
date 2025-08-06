@@ -6,6 +6,31 @@
 
 IMD::SEQUENCE::arithmetic_sequence::arithmetic_sequence(long long start, long long step) noexcept: _start(start), _current(start), _step(step), _index(0) {}
 
+IMD::SEQUENCE::arithmetic_sequence::arithmetic_sequence(const arithmetic_sequence& other) noexcept : _start(other._start), _current(other._current), _step(other._step), _index(other._index) {}
+
+IMD::SEQUENCE::arithmetic_sequence::arithmetic_sequence(arithmetic_sequence&& other) noexcept : _start(other._start), _current(other._current), _step(other._step), _index(other._index) {}
+
+IMD::SEQUENCE::arithmetic_sequence& IMD::SEQUENCE::arithmetic_sequence::operator=(const arithmetic_sequence& other) noexcept{
+    if (this != &other){
+        this->_start = other._start;
+        this->_current = other._current;
+        this->_step = other._step;
+        this->_index = other._index;
+    }
+    return *this;
+}
+
+IMD::SEQUENCE::arithmetic_sequence& IMD::SEQUENCE::arithmetic_sequence::operator=(arithmetic_sequence&& other) noexcept{
+    this->_start = std::move(other._start);
+    this->_current = std::move(other._current);
+    this->_step = std::move(other._step);
+    this->_index = std::move(other._index);
+
+    return *this;
+}
+
+IMD::SEQUENCE::arithmetic_sequence::~arithmetic_sequence() noexcept = default;
+
 std::vector<std::vector<unsigned int>> IMD::BINOMIAL::Pascal_triangle(size_t rows){
     std::vector<std::vector<unsigned int>> result;
     for(size_t i {0}; i < rows; ++i){
@@ -68,6 +93,31 @@ void IMD::SEQUENCE::arithmetic_sequence::reset() noexcept{
 
 IMD::SEQUENCE::geometric_sequence::geometric_sequence(double start, double ratio) noexcept: _start(start), _current(start), _ratio(ratio), _index(0) {}
 
+IMD::SEQUENCE::geometric_sequence::geometric_sequence(const geometric_sequence& other) noexcept : _start(other._start), _current(other._current), _ratio(other._ratio), _index(other._index) {}
+
+IMD::SEQUENCE::geometric_sequence::geometric_sequence(geometric_sequence&& other) noexcept : _start(other._start), _current(other._current), _ratio(other._ratio), _index(other._index) {}
+
+IMD::SEQUENCE::geometric_sequence& IMD::SEQUENCE::geometric_sequence::operator=(const geometric_sequence& other) noexcept{
+    if (this != &other){
+        this->_start = other._start;
+        this->_current = other._current;
+        this->_ratio = other._ratio;
+        this->_index = other._index;
+    }
+    return *this;
+}
+
+IMD::SEQUENCE::geometric_sequence& IMD::SEQUENCE::geometric_sequence::operator=(geometric_sequence&& other) noexcept{
+    this->_start = std::move(other._start);
+    this->_current = std::move(other._current);
+    this->_index = std::move(other._index);
+    this->_ratio = std::move(other._ratio);
+
+    return *this;
+}
+
+IMD::SEQUENCE::geometric_sequence::~geometric_sequence() noexcept = default;
+
 double IMD::SEQUENCE::geometric_sequence::current() const noexcept{
     return this->_current;
 }
@@ -119,6 +169,29 @@ void IMD::SEQUENCE::geometric_sequence::reset() noexcept{
 }
 
 IMD::SEQUENCE::Fibonacci_sequence::Fibonacci_sequence() noexcept : _previous(0), _current(1), _index(0) {}
+
+IMD::SEQUENCE::Fibonacci_sequence::Fibonacci_sequence(const Fibonacci_sequence& other) noexcept : _previous(other._previous), _current(other._current), _index(other._index) {}
+
+IMD::SEQUENCE::Fibonacci_sequence::Fibonacci_sequence(Fibonacci_sequence&& other) noexcept : _previous(other._previous), _current(other._current), _index(other._index) {}
+
+IMD::SEQUENCE::Fibonacci_sequence& IMD::SEQUENCE::Fibonacci_sequence::operator=(const Fibonacci_sequence& other) noexcept{
+    if (this != &other){
+        this->_previous = other._previous;
+        this->_current = other._current;
+        this->_index = other._index;
+    }
+    return *this;
+}
+
+IMD::SEQUENCE::Fibonacci_sequence& IMD::SEQUENCE::Fibonacci_sequence::operator=(Fibonacci_sequence&& other) noexcept{
+    this->_previous = std::move(other._previous);
+    this->_current = std::move(other._current);
+    this->_index = std::move(other._index);
+
+    return *this;
+}
+
+IMD::SEQUENCE::Fibonacci_sequence::~Fibonacci_sequence() noexcept = default;
 
 long long IMD::SEQUENCE::Fibonacci_sequence::current() const noexcept {
     return this->_current;
@@ -176,6 +249,27 @@ void IMD::SEQUENCE::Fibonacci_sequence::reset() noexcept{
 }
 
 IMD::SEQUENCE::Catalan_sequence::Catalan_sequence() noexcept : _index(0), _current(1) {}
+
+IMD::SEQUENCE::Catalan_sequence::Catalan_sequence(const Catalan_sequence& other) noexcept : _current(other._current), _index(other._index) {}
+
+IMD::SEQUENCE::Catalan_sequence::Catalan_sequence(Catalan_sequence&& other) noexcept : _current(other._current), _index(other._index) {}
+
+IMD::SEQUENCE::Catalan_sequence& IMD::SEQUENCE::Catalan_sequence::operator=(const Catalan_sequence& other) noexcept{
+    if (this != &other){
+        this->_current = other._current;
+        this->_index = other._index;
+    }
+    return *this;
+}
+
+IMD::SEQUENCE::Catalan_sequence& IMD::SEQUENCE::Catalan_sequence::operator=(Catalan_sequence&& other) noexcept{
+    this->_current = std::move(other._current);
+    this->_index = std::move(other._index);
+
+    return *this;
+}
+
+IMD::SEQUENCE::Catalan_sequence::~Catalan_sequence() noexcept = default;
 
 long long IMD::SEQUENCE::Catalan_sequence::current() const noexcept{
     return this->_current;

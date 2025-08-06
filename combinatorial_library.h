@@ -128,6 +128,14 @@ namespace IMD{
 
         public:
             arithmetic_sequence(long long start, long long step) noexcept;
+
+            arithmetic_sequence(const arithmetic_sequence& other) noexcept;
+            arithmetic_sequence(arithmetic_sequence&& other) noexcept;
+
+            arithmetic_sequence& operator=(const arithmetic_sequence& other) noexcept;
+            arithmetic_sequence& operator=(arithmetic_sequence&&) noexcept;
+
+            ~arithmetic_sequence() noexcept;
     
             long long current() const noexcept;
     
@@ -158,6 +166,14 @@ namespace IMD{
         public:
             geometric_sequence(double start, double ratio) noexcept;
 
+            geometric_sequence(const geometric_sequence& other) noexcept;
+            geometric_sequence(geometric_sequence&& other) noexcept;
+
+            geometric_sequence& operator=(const geometric_sequence& other) noexcept;
+            geometric_sequence& operator=(geometric_sequence&&) noexcept;
+
+            ~geometric_sequence() noexcept;
+
             double current() const noexcept;
         
             void next() noexcept;
@@ -185,6 +201,14 @@ namespace IMD{
 
         public:
             Fibonacci_sequence() noexcept;
+
+            Fibonacci_sequence(const Fibonacci_sequence& other) noexcept;
+            Fibonacci_sequence(Fibonacci_sequence&& other) noexcept;
+
+            Fibonacci_sequence& operator=(const Fibonacci_sequence& other) noexcept;
+            Fibonacci_sequence& operator=(Fibonacci_sequence&& other) noexcept;
+
+            ~Fibonacci_sequence() noexcept;
             
             long long current() const noexcept;
             
@@ -212,6 +236,14 @@ namespace IMD{
         
         public:
             Catalan_sequence() noexcept;
+
+            Catalan_sequence(const Catalan_sequence& other) noexcept;
+            Catalan_sequence(Catalan_sequence&& other) noexcept;
+
+            Catalan_sequence& operator=(const Catalan_sequence& other) noexcept;
+            Catalan_sequence& operator=(Catalan_sequence&& other) noexcept;
+
+            ~Catalan_sequence() noexcept;
 
             long long current() const noexcept;
 
