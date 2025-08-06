@@ -61,8 +61,7 @@ void IMD::SEQUENCE::Fibonacci_sequence::next() noexcept {
 }
 
 void IMD::SEQUENCE::Fibonacci_sequence::previous() noexcept {
-    if (this->_current == 0)
-        throw std::out_of_range("No previous element");
+    if (this->_current == 0) return;
     
     long long temp = this->_current;
     this->_current = this->_previous;
@@ -74,3 +73,25 @@ bool IMD::SEQUENCE::Fibonacci_sequence::is_convergent() const noexcept {
 }
 
 IMD::SEQUENCE::Fibonacci_sequence::Fibonacci_sequence() noexcept : _previous(0), _current(1) {}
+
+IMD::SEQUENCE::Catalan_sequence::Catalan_sequence() noexcept : _current_index(0), _current_value(1) {}
+
+long long IMD::SEQUENCE::Catalan_sequence::current() const noexcept{
+    return this->_current_value;
+}
+
+void IMD::SEQUENCE::Catalan_sequence::next() noexcept{
+    this->_current_value = this->_current_value * 2 * (2 * this->_current_index + 1) / (this->_current_index + 2);
+    ++this->_current_index;
+}
+
+void IMD::SEQUENCE::Catalan_sequence::previous() noexcept{
+    if (this->_current_index == 0) return;
+
+    this->_current_value = this->_current_value * (this->_current_index + 1) / (2 * (2 * (this->_current_index - 1) + 1));
+    --this->_current_index;
+}
+
+bool IMD::SEQUENCE::Catalan_sequence::is_convergent() const noexcept{
+    return false;
+}

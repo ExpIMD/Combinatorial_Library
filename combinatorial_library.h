@@ -123,6 +123,7 @@ namespace IMD{
         private:
             long long _current;
             long long _step;
+
         public:
             arithmetic_sequence(long long start, long long step) noexcept;
     
@@ -139,6 +140,7 @@ namespace IMD{
         private:
             double _current;
             double _ratio;
+
         public:
             geometric_sequence(double start, double ratio) noexcept;
 
@@ -151,7 +153,11 @@ namespace IMD{
             bool is_convergent() const noexcept;
         };
 
-        class Fibonacci_sequence {
+        class Fibonacci_sequence {    
+        private:
+            long long _previous;
+            long long _current;
+
         public:
             Fibonacci_sequence() noexcept;
             
@@ -162,10 +168,23 @@ namespace IMD{
             void previous() noexcept;
             
             bool is_convergent() const noexcept;
-            
+        };
+
+        class Catalan_sequence{
         private:
-            long long _previous;
-            long long _current;
+            long long _current_index;
+            long long _current_value;
+        
+        public:
+            Catalan_sequence() noexcept;
+
+            long long current() const noexcept;
+
+            void next() noexcept;
+
+            void previous() noexcept;
+
+            bool is_convergent() const noexcept;
         };
     }
     

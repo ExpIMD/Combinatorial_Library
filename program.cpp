@@ -7,14 +7,14 @@
 int main(){
     std::cout << "Hello, world!" << std::endl;
 
-    IMD::SEQUENCE::Fibonacci_sequence gs{};
+    IMD::SEQUENCE::Catalan_sequence cs{};
 
     for(size_t i {0}; i < 10; ++i){
-        std::cout << gs.current() << " ";
-        gs.next();
+        std::cout << cs.current() << " ";
+        cs.next();
     }
 
-    std::cout << std::endl << std::boolalpha << gs.is_convergent();
+    std::cout << std::endl << std::boolalpha << cs.is_convergent();
 
     return 0;
 }
