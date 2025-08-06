@@ -121,8 +121,10 @@ namespace IMD{
 
         class arithmetic_sequence{
         private:
+            long long _start;
             long long _current;
             long long _step;
+            size_t _index;
 
         public:
             arithmetic_sequence(long long start, long long step) noexcept;
@@ -133,13 +135,25 @@ namespace IMD{
                 
             void previous() noexcept;
     
-            bool is_convergent() const noexcept;        
+            bool is_convergent() const noexcept;
+            
+            size_t index() const noexcept;
+
+            void advance(size_t n) noexcept;
+            
+            void rewind(size_t n) noexcept;
+
+            void move(size_t n) noexcept;
+
+            void reset() noexcept;
         };
 
         class geometric_sequence{
         private:
+            double _start;
             double _current;
             double _ratio;
+            size_t _index;
 
         public:
             geometric_sequence(double start, double ratio) noexcept;
@@ -151,12 +165,23 @@ namespace IMD{
             void previous() noexcept;
         
             bool is_convergent() const noexcept;
+
+            size_t index() const noexcept;
+
+            void advance(size_t n) noexcept;
+            
+            void rewind(size_t n) noexcept;
+
+            void move(size_t n) noexcept;
+
+            void reset() noexcept;
         };
 
         class Fibonacci_sequence {    
         private:
             long long _previous;
             long long _current;
+            size_t _index;
 
         public:
             Fibonacci_sequence() noexcept;
@@ -168,12 +193,22 @@ namespace IMD{
             void previous() noexcept;
             
             bool is_convergent() const noexcept;
+            
+            size_t index() const noexcept;
+            
+            void advance(size_t n) noexcept;
+            
+            void rewind(size_t n) noexcept;
+
+            void move(size_t n) noexcept;
+
+            void reset() noexcept;
         };
 
         class Catalan_sequence{
         private:
-            long long _current_index;
-            long long _current_value;
+            long long _current;
+            size_t _index;
         
         public:
             Catalan_sequence() noexcept;
@@ -185,6 +220,16 @@ namespace IMD{
             void previous() noexcept;
 
             bool is_convergent() const noexcept;
+            
+            size_t index() const noexcept;
+
+            void advance(size_t n) noexcept;
+            
+            void rewind(size_t n) noexcept;
+
+            void move(size_t n) noexcept;
+
+            void reset() noexcept;
         };
     }
     
