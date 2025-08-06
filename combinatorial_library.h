@@ -124,7 +124,7 @@ namespace IMD{
             long long _current;
             long long _step;
         public:
-            arithmetic_sequence(long long start, long long step) : _current(start), _step(step) {}
+            arithmetic_sequence(long long start, long long step) noexcept;
     
             long long current() const noexcept;
     
@@ -140,7 +140,7 @@ namespace IMD{
             double _current;
             double _ratio;
         public:
-            geometric_sequence(double start, double ratio): _current(start), _ratio(ratio) {}
+            geometric_sequence(double start, double ratio) noexcept;
 
             double current() const noexcept;
         
@@ -149,6 +149,23 @@ namespace IMD{
             void previous() noexcept;
         
             bool is_convergent() const noexcept;
+        };
+
+        class Fibonacci_sequence {
+        public:
+            Fibonacci_sequence() noexcept;
+            
+            long long current() const noexcept;
+            
+            void next() noexcept;
+            
+            void previous() noexcept;
+            
+            bool is_convergent() const noexcept;
+            
+        private:
+            long long _previous;
+            long long _current;
         };
     }
     

@@ -7,7 +7,7 @@
 int main(){
     std::cout << "Hello, world!" << std::endl;
 
-    IMD::SEQUENCE::geometric_sequence gs{3, 0.3};
+    IMD::SEQUENCE::Fibonacci_sequence gs{};
 
     for(size_t i {0}; i < 10; ++i){
         std::cout << gs.current() << " ";
