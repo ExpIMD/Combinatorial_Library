@@ -7,19 +7,12 @@
 int main(){
     std::cout << "Hello, world!" << std::endl;
 
-    std::vector<int> vec{1, 2, 3, 4};
-    size_t index{0};
-    std::vector<std::vector<int>> result{};
-    IMD::PERMUTATIONS::Johnson_Trotter_algorithm(vec, [&result](const std::vector<int>& vec){
-        result.push_back(vec);
-    });
+    auto result = IMD::BINOMIAL::Pascal_triangle(5);
 
     for(auto x : result){
-        std::cout << "INDEX: " << index << ": ";
         for(auto y : x)
             std::cout << y << " ";
         std::cout << std::endl;
-        ++index;
     }
 
     return 0;

@@ -36,12 +36,12 @@ namespace IMD{
                 throw std::runtime_error("n > permutation.size()");
 
             if (n == 1){
-                result.push_back(permutation);
+                f(permutation);
                 return;
             }
             
             for(size_t i{0}; i < n; ++i){
-                Heap_recursion_algorithm(permutation, n - 1, result);
+                Heap_recursion_algorithm(permutation, f, n - 1);
                 if (n % 2 == 0)
                     std::swap(permutation[i], permutation[n-1]);
                 else std::swap(permutation[0], permutation[n-1]);
@@ -53,20 +53,21 @@ namespace IMD{
             if (n > permutation.size())
                 throw std::runtime_error("n > permutation.size()");
 
-            std::vector<size_t> c(n, 0);
+            std::vector<size_t> counter(n, 0);
             f(permutation);
 
             size_t i {0};
             while (i < n) {
-                if (c[i] < i) {
+                if (counter[i] < i) {
                     if (i % 2 == 0)
                         std::swap(permutation[0], permutation[i]);
-                    else std::swap(permutation[c[i]], permutation[i]);
+                    else std::swap(permutation[counter[i]], permutation[i]);
+                    
                     f(permutation);
-                    ++c[i];
+                    ++counter[i];
                     i = {0};
                 } else {
-                    c[i] = {0};
+                    counter[i] = {0};
                     ++i;
                 }
             }
@@ -78,20 +79,20 @@ namespace IMD{
             f(permutation);
 
             while(true){
-                int largest_mobile_index = -1;
+                long largest_mobile_index {-1};
 
                 for (size_t i {0}; i < permutation.size(); ++i) {
-                    int new_index = i + directions[i];
+                    long new_index = i + directions[i];
                     if (new_index >= 0 && new_index < permutation.size() && permutation[i] > permutation[new_index]) {
                         if (largest_mobile_index == -1 || permutation[i] > permutation[largest_mobile_index])
                             largest_mobile_index = i;
                     }
                 }
 
-
                 if (largest_mobile_index == -1) break;
 
-                int move_index {largest_mobile_index + directions[largest_mobile_index]};
+                long move_index {largest_mobile_index + directions[largest_mobile_index]};
+
                 std::swap(permutation[largest_mobile_index], permutation[move_index]);
                 std::swap(directions[largest_mobile_index], directions[move_index]);
 
@@ -101,9 +102,23 @@ namespace IMD{
                     if (permutation[i] > permutation[largest_mobile_index])
                         directions[i] *= -1;
 
-
                 f(permutation);
             }
         }
     }
+    
+
+    namespace BINOMIAL {
+        std::vector<std::vector<unsigned int>> Pascal_triangle(size_t rows){
+            std::vector<std::vector<unsigned int>> result;
+            for(size_t i {0}; i < rows; ++i){
+                std::vector<unsigned int> row(i + 1, 1);
+                for(size_t j {1}; j < i; ++j)
+                    row[j] = result[i - 1][j - 1] + result[i - 1][j];
+                result.push_back(row);
+            }
+            return result;
+        }
+    }
+    
 }
