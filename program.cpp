@@ -15,15 +15,18 @@ int main(){
         seq.next();
     }
 
-    std::vector<int> permutation {1, 2, 3};
-    std::vector<int> current;
+    std::vector<int> permutation {1, 2, 3, 4, 5};
+    std::vector<int> current = permutation;
 
-    IMD::backtracking_algorithm(permutation, current, 0, [](const std::vector<int>& vec){
-        for(const auto& x : vec)
-            std::cout << x << " ";
-        std::cout << std::endl;
+    for(size_t i{0}; i < 120; ++i){
 
-    });
+        IMD::factorial_number_system_permutation_bitmask(permutation, i, [i](const std::vector<int>& vec){
+            std::cout << "Index: " << i << ", Permutation: ";
+            for(const auto& x : vec)
+                std::cout << x << " ";
+            std::cout << std::endl;
+        });
+    }
 
     return 0;
 }

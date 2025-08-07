@@ -122,6 +122,47 @@ namespace IMD{
             }
         }
     }
+
+    template<typename T, typename Func>
+    void factorial_number_system_permutation_bitmask(const std::vector<T>& source, size_t index, Func f) {
+        size_t n {source.size()};
+        if (n > 64)
+            throw std::invalid_argument("Bitmask implementation supports up to 64 elements.");
+
+        std::vector<T> permutation;
+        permutation.reserve(n);
+
+        std::vector<size_t> factorials(n);
+        factorials[0] = 1;
+        for (size_t i {1}; i < n; ++i)
+            factorials[i] = factorials[i - 1] * i;
+
+        if (index >= factorials[n - 1] * n)
+            throw std::out_of_range("Index exceeds total number of permutations");
+
+        unsigned long long used_mask {0};
+
+        for (size_t i {0}; i < n; ++i) {
+            size_t factorial = factorials[n - 1 - i];
+            size_t position = index / factorial;
+            index %= factorial;
+
+            size_t count {0};
+            size_t element_index {0};
+            for (; element_index < n; ++element_index) {
+                if ((used_mask & (1ULL << element_index)) == 0) {
+                    if (count == position) break;
+                    ++count;
+                }
+            }
+
+            permutation.push_back(source[element_index]);
+            used_mask |= (1ULL << element_index);
+        }
+
+        f(permutation);
+    }
+
 }
 
 #endif
