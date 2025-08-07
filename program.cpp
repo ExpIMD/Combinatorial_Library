@@ -15,18 +15,7 @@ int main(){
         seq.next();
     }
 
-    std::vector<int> permutation {1, 2, 3, 4, 5};
-    std::vector<int> current = permutation;
-
-    for(size_t i{0}; i < 120; ++i){
-
-        IMD::factorial_number_system_permutation_bitmask(permutation, i, [i](const std::vector<int>& vec){
-            std::cout << "Index: " << i << ", Permutation: ";
-            for(const auto& x : vec)
-                std::cout << x << " ";
-            std::cout << std::endl;
-        });
-    }
-
+    std::vector<int> permutation {1, 3, 2};
+    size_t index{0};
     return 0;
 }

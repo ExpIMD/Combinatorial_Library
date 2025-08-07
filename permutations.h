@@ -32,7 +32,7 @@ namespace IMD{
         return true;
     }
     template<typename T, typename Func>
-    void Heap_recursion_algorithm(std::vector<T>& permutation, Func f, size_t n){
+    void Heap_algorithm(std::vector<T>& permutation, Func f, size_t n){
         if (n > permutation.size())
             throw std::runtime_error("n > permutation.size()");
 
@@ -50,7 +50,7 @@ namespace IMD{
     }
 
     template<typename T, typename Func>
-    void Heap_iterative_algorithm(std::vector<T>& permutation, Func f, size_t n){
+    void Algorithm_L(std::vector<T>& permutation, Func f, size_t n){
         if (n > permutation.size())
             throw std::runtime_error("n > permutation.size()");
 
