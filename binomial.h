@@ -8,7 +8,7 @@ namespace IMD {
 
     std::vector<unsigned int> Pascal_triangle_row(size_t row_index);
     
-    unsigned int binomial_coefficient(unsigned int n, unsigned int m); // C(n, m)
+    unsigned long long binomial_coefficient(unsigned int n, unsigned int m); // C(n, m)
 
     unsigned long long sum_binomial_coefficient(unsigned int n);
 
@@ -16,7 +16,7 @@ namespace IMD {
 
     unsigned long long path_to_the_grate(unsigned int n, unsigned int m);
 
-    unsigned int number_of_good_pairs(const std::vector<int>& vec);
+    unsigned long long number_of_good_pairs(const std::vector<int>& vec);
 
 }
 

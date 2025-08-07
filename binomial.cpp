@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <unordered_map>
 #include "binomial.h"
 
 
@@ -27,7 +28,7 @@ std::vector<unsigned int> IMD::Pascal_triangle_row(size_t row_index){
     return row;           
 }
 
-unsigned int IMD::binomial_coefficient(unsigned int n, unsigned int m){ // C(n, m)
+unsigned long long IMD::binomial_coefficient(unsigned int n, unsigned int m){ // C(n, m)
     return IMD::Pascal_triangle_row(n)[m];
 }
 
@@ -59,3 +60,21 @@ void IMD::print_Newton_binomial(unsigned int n, std::ostream& out) {
     }
     out << std::endl;
 }
+
+unsigned long long IMD::path_to_the_grate(unsigned int n, unsigned int m){
+    return binomial_coefficient(n + m, n);
+}
+
+unsigned long long IMD::number_of_good_pairs(const std::vector<int>& vec){
+    std::unordered_map<int, unsigned int> alphabet;
+    int result{0};
+
+    for (const auto& x : vec) alphabet[x]++;
+
+    for (const auto& entry : alphabet)
+        result += (entry.second * (entry.second - 1)) / 2; // C(count, 2)
+
+    return result;
+
+}
+
