@@ -4,6 +4,7 @@
 #include <list>
 #include "sequences.h"
 #include "permutations.h"
+#include "binomial.h"
 
 int main(){
     std::cout << "Hello, world!" << std::endl;
@@ -15,7 +16,5 @@ int main(){
         seq.next();
     }
 
-    std::vector<int> permutation {1, 3, 2};
-    size_t index{0};
-    return 0;
+    std::cout << IMD::binomial_coefficient(7, 2);
 }
