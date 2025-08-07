@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iterator>
 #include <stdexcept>
+#include <unordered_set>
 
 namespace IMD{
     template<typename T>
@@ -107,19 +108,17 @@ namespace IMD{
     }
 
     template<typename T, typename Func>
-    void backtracking_algorithm(std::vector<T>& source, std::vector<bool>& used, std::vector<T>& current, Func f){
-        if (current.size() == source.size()){
+    void backtracking_algorithm(const std::vector<T>& source, std::vector<T>& current, size_t used_mask, Func f) {
+        if (current.size() == source.size()) {
             f(current);
             return;
         }
-
-        for(size_t i {0}; i < source.size(); ++i){
-            if (!used[i]){
-                used[i] = true;
+    
+        for (size_t i {0}; i < source.size(); ++i) {
+            if ((used_mask & (1ULL << i)) == 0) {
                 current.push_back(source[i]);
-                backtracking_algorithm(source, used, current, f);
+                backtracking_algorithm(source, current, used_mask | (1ULL << i), f);
                 current.pop_back();
-                used[i] = false;
             }
         }
     }

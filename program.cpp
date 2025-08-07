@@ -15,11 +15,10 @@ int main(){
         seq.next();
     }
 
-    std::vector<int> permutation {1, 2, 3, 4};
-    std::vector<bool> used(permutation.size(), false);
+    std::vector<int> permutation {1, 2, 3};
     std::vector<int> current;
 
-    IMD::backtracking_algorithm(permutation, used, current, [](const std::vector<int>& vec){
+    IMD::backtracking_algorithm(permutation, current, 0, [](const std::vector<int>& vec){
         for(const auto& x : vec)
             std::cout << x << " ";
         std::cout << std::endl;
