@@ -9,7 +9,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${fileDirname}/program.cpp",
-                "${fileDirname}/combinatorial_library.cpp",
+                "${fileDirname}/sequences.cpp",
+                "${fileDirname}/binomial.cpp",
                 "-o",
                 "${fileDirname}/program"
             ],
