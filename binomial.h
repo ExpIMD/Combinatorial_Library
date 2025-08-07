@@ -10,11 +10,11 @@ namespace IMD {
     
     unsigned int binomial_coefficient(unsigned int n, unsigned int m); // C(n, m)
 
-    unsigned int sum_binomial_coefficient(int n);
+    unsigned long long sum_binomial_coefficient(unsigned int n);
 
-    void Newton_binomial(unsigned int n);
+    void print_Newton_binomial(unsigned int n, std::ostream& out = std::cout);
 
-    unsigned int path_to_the_grate(int n, int m);
+    unsigned long long path_to_the_grate(unsigned int n, unsigned int m);
 
     unsigned int number_of_good_pairs(const std::vector<int>& vec);
 

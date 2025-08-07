@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 #include "binomial.h"
 
 
@@ -28,5 +29,33 @@ std::vector<unsigned int> IMD::Pascal_triangle_row(size_t row_index){
 
 unsigned int IMD::binomial_coefficient(unsigned int n, unsigned int m){ // C(n, m)
     return IMD::Pascal_triangle_row(n)[m];
+}
 
+unsigned long long IMD::sum_binomial_coefficient(unsigned int n){
+    return 1ULL << n;
+}
+
+void IMD::print_Newton_binomial(unsigned int n, std::ostream& out) {
+    for (unsigned int k {0}; k <= n; ++k) {
+        unsigned long long coefficient {binomial_coefficient(n, k)};
+
+        if (coefficient != 1)
+            out << coefficient;
+
+        if (n - k > 0) {
+            out << "a";
+            if (n - k > 1)
+                out << "^" << (n - k);
+        }
+
+        if (k > 0) {
+            out << "b";
+            if (k > 1)
+                out << "^" << k;
+        }
+
+        if (k != n)
+            out << " + ";
+    }
+    out << std::endl;
 }

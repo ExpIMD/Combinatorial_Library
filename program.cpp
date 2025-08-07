@@ -16,5 +16,5 @@ int main(){
         seq.next();
     }
 
-    std::cout << IMD::binomial_coefficient(7, 2);
+    IMD::print_Newton_binomial(5);
 }
