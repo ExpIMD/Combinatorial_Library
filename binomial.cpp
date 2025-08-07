@@ -4,10 +4,10 @@
 #include "binomial.h"
 
 
-std::vector<std::vector<unsigned int>> IMD::Pascal_triangle(size_t rows){
-    std::vector<std::vector<unsigned int>> result;
+std::vector<std::vector<unsigned long long>> IMD::Pascal_triangle(unsigned int rows){
+    std::vector<std::vector<unsigned long long>> result;
     for(size_t i {0}; i < rows; ++i){
-        std::vector<unsigned int> row(i + 1, 1);
+        std::vector<unsigned long long> row(i + 1, 1);
         for(size_t j {1}; j < i; ++j)
             row[j] = result[i - 1][j - 1] + result[i - 1][j];
         result.push_back(row);
@@ -15,8 +15,8 @@ std::vector<std::vector<unsigned int>> IMD::Pascal_triangle(size_t rows){
     return result;
 }
 
-std::vector<unsigned int> IMD::Pascal_triangle_row(size_t row_index){
-    std::vector<unsigned int> row(row_index + 1, 0);
+std::vector<unsigned long long> IMD::Pascal_triangle_row(unsigned int row_index){
+    std::vector<unsigned long long> row(row_index + 1, 0);
     row[0] = 1;
 
     for (size_t i {1}; i <= row_index; ++i) {
@@ -67,7 +67,7 @@ unsigned long long IMD::path_to_the_grate(unsigned int n, unsigned int m){
 
 unsigned long long IMD::number_of_good_pairs(const std::vector<int>& vec){
     std::unordered_map<int, unsigned int> alphabet;
-    int result{0};
+    unsigned long long result{0};
 
     for (const auto& x : vec) alphabet[x]++;
 

@@ -4,9 +4,9 @@
 #include <vector>
 
 namespace IMD {
-    std::vector<std::vector<unsigned int>> Pascal_triangle(size_t rows);
+    std::vector<std::vector<unsigned long long>> Pascal_triangle(unsigned int rows);
 
-    std::vector<unsigned int> Pascal_triangle_row(size_t row_index);
+    std::vector<unsigned long long> Pascal_triangle_row(unsigned int row_index);
     
     unsigned long long binomial_coefficient(unsigned int n, unsigned int m); // C(n, m)
 
